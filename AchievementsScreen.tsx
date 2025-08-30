@@ -35,8 +35,8 @@ const AchievementsScreen: React.FC<AchievementsScreenProps> = ({ onBack }) => {
   }, [unlocked]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-600 to-teal-800 p-8 text-white">
-      <h1 className="text-4xl text-center mb-8">Achievements</h1>
+    <div className="screen-container bg-gradient-to-br from-green-600 to-teal-800 text-white">
+      <h1 className="screen-title text-center mb-8">Achievements</h1>
       <div className="achievements-grid max-w-xl mx-auto">
         {Object.entries(achievements).map(([key, achievement]) => (
           <AchievementBadge
@@ -50,7 +50,7 @@ const AchievementsScreen: React.FC<AchievementsScreenProps> = ({ onBack }) => {
       </div>
       <button
         onClick={onBack}
-        className="mt-8 block mx-auto bg-yellow-300 text-black px-6 py-3 rounded-lg font-bold"
+        className="mt-8 block mx-auto bg-yellow-300 text-black btn-responsive font-bold"
       >
         Back
       </button>

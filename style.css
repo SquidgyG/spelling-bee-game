@@ -3,14 +3,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --primary-color: #2563eb; /* Improved contrast blue */
-  --text-color: #1e293b; /* Darker text for better readability */
-  --bg-color: #f8fafc; /* Light background */
-  
-  /* Dark mode variables */
-  --dark-primary: #3b82f6;
-  --dark-text: #f1f5f9;
-  --dark-bg: #0f172a;
+  --primary-color-light: #2563eb;
+  --text-color-light: #1e293b;
+  --bg-color-light: #f8fafc;
+
+  --primary-color-dark: #3b82f6;
+  --text-color-dark: #f1f5f9;
+  --bg-color-dark: #0f172a;
+
+  --primary-color-honeycomb: #d97706;
+  --text-color-honeycomb: #78350f;
+  --bg-color-honeycomb: #fef7cd;
+
+  --primary-color: var(--primary-color-light);
+  --text-color: var(--text-color-light);
+  --bg-color: var(--bg-color-light);
 }
 
 * {
@@ -22,26 +29,86 @@ body {
     padding: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
     overflow-x: hidden;
-    background-image: url('img/bee-honeycomb.svg');
-    background-size: 200px 173px;
-    background-repeat: repeat;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 body.theme-light {
-    background: #ffffff;
-    color: #1f2937;
+    --primary-color: var(--primary-color-light);
+    --text-color: var(--text-color-light);
+    --bg-color: var(--bg-color-light);
 }
 
 body.theme-dark {
-    background: #1f2937;
-    color: #f9fafb;
+    --primary-color: var(--primary-color-dark);
+    --text-color: var(--text-color-dark);
+    --bg-color: var(--bg-color-dark);
 }
 
 body.theme-honeycomb {
-    background-color: #fef7cd;
+    --primary-color: var(--primary-color-honeycomb);
+    --text-color: var(--text-color-honeycomb);
+    --bg-color: var(--bg-color-honeycomb);
     background-image: radial-gradient(#fbbf24 1px, transparent 1px);
     background-size: 20px 20px;
-    color: #78350f;
+}
+
+/* Shared layout utilities */
+.screen-container {
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .screen-container {
+        padding: 2rem;
+    }
+}
+
+.screen-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .screen-title {
+        font-size: 3rem;
+    }
+}
+
+.screen-subtitle {
+    font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .screen-subtitle {
+        font-size: 1.5rem;
+    }
+}
+
+.btn-responsive {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .btn-responsive {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.125rem;
+    }
+}
+
+.timer-display {
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+
+@media (min-width: 768px) {
+    .timer-display {
+        font-size: 3.75rem;
+    }
 }
 
 /* Teacher Mode increases overall scaling for easier classroom viewing */
@@ -183,6 +250,21 @@ video {
 .modal-overlay {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-overlay .modal-content {
+    width: 100%;
+    max-width: 500px;
+}
+
+@media (min-width: 768px) {
+    .modal-overlay .modal-content {
+        max-width: 600px;
+    }
 }
 
 /* Custom scrollbar */
@@ -247,12 +329,6 @@ video {
   place-items: center;
   cursor: pointer;
   transition: all 0.2s ease;
-}
-
-.dark-mode {
-  --primary-color: var(--dark-primary);
-  --text-color: var(--dark-text);
-  --bg-color: var(--dark-bg);
 }
 
 /* Responsive design */

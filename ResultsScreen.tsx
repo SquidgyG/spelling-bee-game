@@ -101,9 +101,9 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ results, config, onRestar
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-700 to-gray-900 p-8 text-white text-center flex flex-col items-center justify-center">
-      <h1 className="text-6xl font-bold mb-4 text-yellow-300">🏆 Game Over! 🏆</h1>
-      <h2 className="text-4xl mb-8">{getWinnerMessage()}</h2>
+    <div className="screen-container bg-gradient-to-br from-gray-700 to-gray-900 text-white text-center flex flex-col items-center justify-center">
+      <h1 className="screen-title text-yellow-300 mb-4">🏆 Game Over! 🏆</h1>
+      <h2 className="screen-subtitle mb-8">{getWinnerMessage()}</h2>
 
       {results?.duration && (<div className="text-2xl mb-6">Game Duration: {results.duration} seconds</div>)}
       
@@ -150,13 +150,13 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ results, config, onRestar
       )}
 
       <div className="flex gap-6 mt-12 flex-wrap justify-center">
-        <button onClick={handleExport} className="bg-green-500 hover:bg-green-600 px-8 py-5 rounded-xl text-2xl font-bold">
+        <button onClick={handleExport} className="bg-green-500 hover:bg-green-600 btn-responsive rounded-xl font-bold text-xl md:text-2xl">
             📤 Export Results
         </button>
-        <button onClick={onViewLeaderboard} className="bg-purple-500 hover:bg-purple-600 px-8 py-5 rounded-xl text-2xl font-bold">
+        <button onClick={onViewLeaderboard} className="bg-purple-500 hover:bg-purple-600 btn-responsive rounded-xl font-bold text-xl md:text-2xl">
             📈 View Leaderboard
         </button>
-        <button onClick={onRestart} className="bg-blue-500 hover:bg-blue-600 px-10 py-5 rounded-xl text-2xl font-bold">
+        <button onClick={onRestart} className="bg-blue-500 hover:bg-blue-600 btn-responsive rounded-xl font-bold text-xl md:text-2xl">
             🔄 Play Again
         </button>
       </div>

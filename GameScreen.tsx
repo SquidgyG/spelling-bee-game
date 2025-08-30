@@ -86,7 +86,7 @@ const GameScreen: React.FC<GameScreenProps> = ({
   const hiddenInputRef = React.useRef<HTMLInputElement>(null);
   const [startTime] = React.useState(Date.now());
   const [currentAvatar, setCurrentAvatar] = React.useState('');
-  const [darkMode, setDarkMode] = React.useState(false);
+  const [theme, setTheme] = React.useState(() => localStorage.getItem('theme') || 'light');
 
   const { notifications, addNotification, removeNotification } = useNotifications();
 
@@ -140,8 +140,10 @@ const GameScreen: React.FC<GameScreenProps> = ({
   }, [currentWord, isPaused, letters]);
 
   React.useEffect(() => {
-    document.body.className = darkMode ? 'dark-mode' : '';
-  }, [darkMode]);
+    document.body.classList.remove('theme-light', 'theme-dark', 'theme-honeycomb');
+    document.body.classList.add(`theme-${theme}`);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const selectNextWordForLevel = (level: number) => {
     const nextWord = selectNextWord(level);
@@ -410,7 +412,7 @@ const GameScreen: React.FC<GameScreenProps> = ({
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-indigo-600 to-purple-800 p-8 text-white flex flex-col items-center justify-center">
+    <div className="relative screen-container bg-gradient-to-br from-indigo-600 to-purple-800 text-white flex flex-col items-center justify-center">
       <input
         ref={hiddenInputRef}
         type="text"
@@ -446,14 +448,14 @@ const GameScreen: React.FC<GameScreenProps> = ({
       )}
 
       <div className="absolute top-8 right-8 text-center z-50">
-        <div className={`text-6xl font-bold ${timeLeft <= 10 ? 'text-red-500' : 'text-yellow-300'}`}>{timeLeft}</div>
+          <div className={`timer-display ${timeLeft <= 10 ? 'text-red-500' : 'text-yellow-300'}`}>{timeLeft}</div>
         <div className="text-lg">seconds left</div>
-        <button
-          onClick={isPaused ? resumeTimer : pauseTimer}
-          className="mt-2 bg-yellow-300 text-black px-4 py-2 rounded-lg font-bold"
-        >
-          {isPaused ? 'Resume' : 'Pause'}
-        </button>
+          <button
+            onClick={isPaused ? resumeTimer : pauseTimer}
+            className="mt-2 bg-yellow-300 text-black btn-responsive rounded-lg font-bold"
+          >
+            {isPaused ? 'Resume' : 'Pause'}
+          </button>
       </div>
       <div className="absolute bottom-8 left-8 bg-black/50 p-4 rounded-lg z-50 flex flex-col gap-2">
         <div className="flex items-center gap-2">
@@ -497,11 +499,11 @@ const GameScreen: React.FC<GameScreenProps> = ({
         onSelect={(avatar) => setCurrentAvatar(avatar)}
       />
 
-      <button 
+      <button
         className="theme-toggle"
-        onClick={() => setDarkMode(!darkMode)}
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       >
-        {darkMode ? '☀️' : '🌙'}
+        {theme === 'dark' ? '☀️' : '🌙'}
       </button>
 
       {currentWord && (
@@ -521,13 +523,13 @@ const GameScreen: React.FC<GameScreenProps> = ({
             )}
             <button
               onClick={() => speak(currentWord.word)}
-              className="absolute top-0 left-0 bg-yellow-300 text-black px-4 py-2 rounded-lg font-bold"
+              className="absolute top-0 left-0 bg-yellow-300 text-black btn-responsive rounded-lg font-bold"
             >
               Replay Word
             </button>
             <button
               onClick={() => setShowWord(!showWord)}
-              className="absolute top-0 right-0 bg-yellow-300 text-black px-4 py-2 rounded-lg font-bold"
+              className="absolute top-0 right-0 bg-yellow-300 text-black btn-responsive rounded-lg font-bold"
             >
               {showWord ? 'Hide Word' : 'Show Word'}
             </button>

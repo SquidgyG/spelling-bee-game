@@ -329,14 +329,14 @@ const SetupScreen: React.FC<SetupScreenProps> = ({ onStartGame, onAddCustomWords
   };
   
   return (
-    <div className="min-h-screen p-8 text-white">
+    <div className="screen-container text-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
                 <img src="icons/icon.svg" alt="Bee mascot" className="w-12 h-12 md:w-16 md:h-16" />
-                <h1 className="text-4xl md:text-6xl font-bold text-yellow-300">🏆 SPELLING BEE CHAMPIONSHIP</h1>
+                <h1 className="screen-title text-yellow-300">🏆 SPELLING BEE CHAMPIONSHIP</h1>
             </div>
-            <p className="text-xl md:text-2xl">Get ready to spell your way to victory!</p>
+            <p className="screen-subtitle">Get ready to spell your way to victory!</p>
         </div>
 
         <div className="bg-white/10 p-6 rounded-lg mb-8">
@@ -513,7 +513,7 @@ const SetupScreen: React.FC<SetupScreenProps> = ({ onStartGame, onAddCustomWords
             <button onClick={() => handleStart(true)} className="w-full bg-orange-500 hover:bg-orange-600 text-black px-6 py-4 rounded-xl text-2xl font-bold">Start Session Challenge</button>
         </div>
         <div className="mt-4 text-center">
-            <button onClick={onViewAchievements} className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-xl text-xl font-bold">View Achievements</button>
+            <button onClick={onViewAchievements} className="bg-purple-500 hover:bg-purple-600 text-white btn-responsive rounded-xl font-bold text-xl">View Achievements</button>
         </div>
       </div>
     </div>

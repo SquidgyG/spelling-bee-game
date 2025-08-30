@@ -44,8 +44,8 @@ const LeaderboardScreen: React.FC<LeaderboardScreenProps> = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-700 to-gray-900 p-8 text-white text-center flex flex-col items-center justify-center">
-      <h1 className="text-6xl font-bold mb-8 text-yellow-300">🏅 Leaderboard</h1>
+    <div className="screen-container bg-gradient-to-br from-gray-700 to-gray-900 text-white text-center flex flex-col items-center justify-center">
+      <h1 className="screen-title text-yellow-300 mb-8">🏅 Leaderboard</h1>
       <div className="bg-white/10 p-8 rounded-lg w-full max-w-md scorecard">
         {error ? (
           <div className="text-xl text-red-300">{error}</div>
@@ -72,7 +72,7 @@ const LeaderboardScreen: React.FC<LeaderboardScreenProps> = ({ onBack }) => {
       </div>
       <button
         onClick={onBack}
-        className="mt-8 bg-blue-500 hover:bg-blue-600 px-8 py-4 rounded-xl text-2xl font-bold block mx-auto"
+        className="mt-8 bg-blue-500 hover:bg-blue-600 btn-responsive font-bold block mx-auto rounded-xl"
       >
         Back
       </button>
